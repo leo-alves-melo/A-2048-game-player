@@ -7,46 +7,40 @@ directions = ['u', 'd', 'l', 'r']
 
 def play_with_AI(nn):
 
-	game = Game()
+	average = 0.0
 
-	playing = True
+	for times in range(5):
 
-	play = 1
+		game = Game()
 
-	#print '\n\n------------------\n--------------------\n'
+		playing = True
 
-	while playing:
+		while playing:
 
-		entrance = np.copy(game.board)
-		entrance = entrance.reshape(-1)
-		#print game.board
+			entrance = np.copy(game.board)
+			entrance = entrance.reshape(-1)
 
-		#print 'play ' + str(play)
-		play += 1
+			play += 1
 
-		for index in range(len(entrance)):
-			if entrance[index] != 0:
-				entrance[index] = math.log(entrance[index], 2)
+			for index in range(len(entrance)):
+				if entrance[index] != 0:
+					entrance[index] = math.log(entrance[index], 2)
 
-		maior = 0
-		saida = nn.sactivate(entrance)
-		for i in range(len(saida)):
-			if saida[i] > saida[maior]:
-				maior = i
+			maior = 0
+			saida = nn.sactivate(entrance)
+			for i in range(len(saida)):
+				if saida[i] > saida[maior]:
+					maior = i
 
-		movement = directions[maior]
+			movement = directions[maior]
 
-		#print movement
+			if not game.apply_command(movement):
+				average += float(game.score)
+				playing = False
 
-		#print 'O meu movimento foi: ' + movement
+			game.new_round()
 
-
-
-		if not game.apply_command(movement):
-			#print '++++++++++++++++++\n+++++++++++++++++\n\n\n'
-			return float(game.score)
-
-		game.new_round()
+	return average/5.0
 
 
 def play_with_user():

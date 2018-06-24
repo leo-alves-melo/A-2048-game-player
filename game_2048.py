@@ -10,6 +10,7 @@ start_value = 2
 class Game():
 	def __init__(self):
 		self.board = np.array([[0]*columns]*lines)
+		self.score = 0
 		self.initiate()
 
 	def get_empty_positions(self):
@@ -63,6 +64,7 @@ class Game():
 				if self.board[line][index - column] == self.board[line][index - column + 1] and self.board[line][index - column] != 0:
 					
 					self.board[line][index - column + 1] *= 2
+					self.score += self.board[line][index - column + 1] # score
 					for change_index in range(0, index - column):
 						self.board[line][index - column - change_index] = self.board[line][index - column - change_index - 1]
 					self.board[line][0] = 0
@@ -97,6 +99,7 @@ class Game():
 				if self.board[line][column] == self.board[line][column - 1] and self.board[line][column] != 0:
 					
 					self.board[line][column - 1] *= 2
+					self.score += self.board[line][column - 1]
 					for change_index in range(column, columns - 1):
 						self.board[line][change_index] = self.board[line][change_index + 1]
 					self.board[line][columns-1] = 0
@@ -134,6 +137,7 @@ class Game():
 					
 					
 					self.board[line - 1][column] *= 2
+					self.score += self.board[line - 1][column]
 					for change_index in range(line, lines - 1):
 						self.board[change_index][column] = self.board[change_index + 1][column]
 					self.board[lines - 1][column] = 0
@@ -171,6 +175,7 @@ class Game():
 					
 					
 					self.board[index - line + 1][column] *= 2
+					self.score += self.board[index - line + 1][column]
 					for change_index in range(0, index - line):
 						self.board[index - line - change_index][column] = self.board[index - line - change_index - 1][column]
 					self.board[0][column] = 0
@@ -209,20 +214,5 @@ class Game():
 		self.create_start_value()
 
 
-game = Game()
-#game.board = np.array([[2,2,0,0],[2,0,2,0],[2,0,2,0],[2,0,0,2]])
-#print game.board
-#game.user_play()
-#print game.board
-#
-#exit()
 
-while True:
-
-	print '\n --------------------'
-	print game.board
-	game.user_play()
-	print '\n'
-	print game.board
-	game.new_round()
 

@@ -20,8 +20,6 @@ def play_with_AI(nn):
 			entrance = np.copy(game.board)
 			entrance = entrance.reshape(-1)
 
-			play += 1
-
 			for index in range(len(entrance)):
 				if entrance[index] != 0:
 					entrance[index] = math.log(entrance[index], 2)
@@ -37,8 +35,8 @@ def play_with_AI(nn):
 			if not game.apply_command(movement):
 				average += float(game.score)
 				playing = False
-
-			game.new_round()
+			else:
+				game.new_round()
 
 	return average/5.0
 

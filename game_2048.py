@@ -27,9 +27,17 @@ class Game():
 
 		empty_positions = self.get_empty_positions()
 
-		empty_position = empty_positions[randint(0, len(empty_positions) - 1)]
+		if len(empty_positions) == 1:
+			empty_position = empty_positions[0]
+		else:
+			empty_position = empty_positions[randint(0, len(empty_positions) - 1)]
 
-		self.board[empty_position[0]][empty_position[1]] = start_value
+		if randint(0, 5) == 5:
+			new_value = start_value*2
+		else:
+			new_value = start_value
+
+		self.board[empty_position[0]][empty_position[1]] = new_value
 
 	def initiate(self):
 		self.create_start_value()

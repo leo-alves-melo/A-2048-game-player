@@ -1,3 +1,4 @@
 *.pem
 *.svg
 checkpoint_*
+*.pyc

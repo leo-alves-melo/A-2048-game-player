@@ -12,16 +12,23 @@ class Game():
 		self.board = np.array([[0]*columns]*lines)
 		self.initiate()
 
+	def get_empty_positions(self):
+		empty_positions = []
+
+		for line in range(lines):
+			for column in range(columns):
+				if self.board[line][column] == 0:
+					empty_positions.append((line,column))
+
+		return empty_positions
+
 	def create_start_value(self):
-		column_position = randint(0, columns - 1)
-		lines_position = randint(0, lines - 1)
 
-		while self.board[lines_position][column_position] != 0:
+		empty_positions = self.get_empty_positions()
 
-			column_position = randint(0, columns - 1)
-			lines_position = randint(0, lines - 1)
+		empty_position = empty_positions[randint(0, len(empty_positions) - 1)]
 
-		self.board[lines_position][column_position] = start_value
+		self.board[empty_position[0]][empty_position[1]] = start_value
 
 	def initiate(self):
 		self.create_start_value()

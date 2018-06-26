@@ -42,6 +42,9 @@ def play_with_AI(nn):
 
 
 def play_with_user():
+
+	game = Game()
+
 	while True:
 
 		print '\n --------------------'
@@ -52,3 +55,5 @@ def play_with_user():
 
 		print 'score: ' + str(game.score)
 		game.new_round()
+
+#play_with_user()

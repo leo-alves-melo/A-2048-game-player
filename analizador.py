@@ -1,28 +1,11 @@
-from player_2048 import *
 from neat import config, population, chromosome, genome, visualize
 from neat.nn import nn_pure as nn
+from checkpoint import Checkpointer
+from player_2048 import *
 
-config.load('2048_config')
+import sys
 
-max_generations = 5
-
-# set node gene type
-chromosome.node_gene_type = genome.NodeGene
-
-def eval_fitness(population):
-
-	#global melhor_score
-
-	for chromo in population:
-		net = nn.create_ffphenotype(chromo)
-
-		score = play_with_AI(net)
-		chromo.fitness = score
-
-population.Population.evaluate = eval_fitness
-
-pop = population.Population()
-pop.epoch(max_generations, report=True, save_best=False)
+pop = Checkpointer.restore_checkpoint(sys.argv[1])
 
 winner = pop.stats[0][-1]
 print('Number of evaluations: %d' %winner.id)

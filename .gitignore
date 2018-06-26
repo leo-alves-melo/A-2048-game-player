@@ -1,4 +1,5 @@
 *.pem
 *.svg
-checkpoint_*
+checkpoint*
 *.pyc
+*.sh

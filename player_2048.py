@@ -6,17 +6,17 @@ from checkpoint import Checkpointer
 
 import sys
 
-#print 'pegando'
-#pop = Checkpointer.restore_checkpoint(sys.argv[1])
+print 'pegando'
+pop = Checkpointer.restore_checkpoint(sys.argv[1])
 
-#print 'peguei'
+print 'peguei'
 
-#winner = pop.stats[0][-1]
+winner = pop.stats[0][-1]
 
 
 # Let's check if it's really solved the problem
-#print('\nBest network output:')
-#brain = nn.create_ffphenotype(winner)
+print('\nBest network output:')
+brain = nn.create_ffphenotype(winner)
 
 
 
@@ -121,7 +121,7 @@ def play_with_user():
 
 
 #play_with_user()
-#while True:
-#	board = read_board()
-#	input_board(board, brain)
+while True:
+	board = read_board()
+	input_board(board, brain)
 	

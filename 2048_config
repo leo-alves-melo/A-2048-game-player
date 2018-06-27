@@ -1,4 +1,4 @@
-#--- parameters for the 2048 Game experiment ---#
+	#--- parameters for the 2048 Game experiment ---#
 # Stats for the following parameters averaged (std) over 5000 runs:
 #   generations     hidden nodes      synapses
 #   26.2 (7.48)       2.9 (1.3)      10.4 (3.37)
